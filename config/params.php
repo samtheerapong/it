@@ -1,8 +1,8 @@
 <?php
 
 return [
-    'bsVersion' => '5.x',
-    'adminEmail' => 'admin@example.com',
-    'senderEmail' => 'noreply@example.com',
-    'senderName' => 'Example.com mailer',
+    'bsVersion'     => env('BS_VERSION'),
+    'adminEmail'    => env('ADMIN_EMAIL'),
+    'senderEmail'   => env('SENDER_EMAIL'),
+    'senderName'    => env('SENDER_NAME'),
 ];

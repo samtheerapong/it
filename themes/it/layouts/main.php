@@ -4,10 +4,14 @@
 /* @var $content string */
 
 use yii\helpers\Html;
+use app\assets\AppAsset;
 
 \hail812\adminlte3\assets\FontAwesomeAsset::register($this);
 \hail812\adminlte3\assets\AdminLteAsset::register($this);
-$this->registerCssFile('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback');
+\hail812\adminlte3\assets\PluginAsset::register($this)->add('sweetalert2');
+
+// $this->registerCssFile('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback');
+$this->registerCssFile('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@700&family=Kanit&family=Sriracha&family=Sarabun:wght@500&display=swap');
 
 $assetDir = Yii::$app->assetManager->getPublishedUrl('@vendor/almasaeed2010/adminlte/dist');
 

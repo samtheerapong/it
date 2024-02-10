@@ -24,7 +24,8 @@
         "kartik-v/yii2-bootstrap5-dropdown": "^1.0",
         "hail812/yii2-adminlte3": "^1.1",
         "chillerlan/php-qrcode": "*",
-        "yurkinx/yii2-image": "*"
+        "yurkinx/yii2-image": "*",
+        "yiithings/yii2-dotenv": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",

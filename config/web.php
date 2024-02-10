@@ -4,10 +4,10 @@ $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
 
 $config = [
-    'id' => 'basic',
-    'name' => 'QC',
-    'language' => 'th',
-    'timezone' => 'Asia/Bangkok',
+    'id' =>  env('ID'),
+    'name' => env('NAME'),
+    'language' => env('LANGUAGE'),
+    'timezone' => env('TIMEZONE'),
     'basePath' => dirname(__DIR__),
     'bootstrap' => [
         'log',
@@ -40,7 +40,7 @@ $config = [
         'view' => [
             'theme' => [
                 'pathMap' => [
-                    '@app/views' => '@app/themes/it/'
+                    '@app/views' => env('THEME')
                 ],
             ],
         ],
@@ -71,7 +71,7 @@ $config = [
         // default settings
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
-            'cookieValidationKey' => 'KlkGZG24ayXfAdqKpDYxA7fiyXMLpXMv',
+            'cookieValidationKey' => env('COOKIE_KEY'),
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',

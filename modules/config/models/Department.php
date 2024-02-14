@@ -24,7 +24,11 @@ class Department extends \yii\db\ActiveRecord
     {
         return 'department';
     }
-
+    
+    public static function getDb()
+    {
+        return Yii::$app->get('db');
+    }
     /**
      * {@inheritdoc}
      */

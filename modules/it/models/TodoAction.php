@@ -30,6 +30,11 @@ class TodoAction extends \yii\db\ActiveRecord
         return 'todo_action';
     }
 
+    public static function getDb()
+    {
+        return Yii::$app->get('dbit');
+    }
+
     /**
      * {@inheritdoc}
      */

@@ -1,7 +1,9 @@
 <?php
 
-$params = require __DIR__ . '/params.php';
-$db = require __DIR__ . '/db.php';
+$params =   require __DIR__ . '/params.php';
+$db =       require __DIR__ . '/db.php';
+$dbhr =     require __DIR__ . '/dbhr.php';
+$dbit =     require __DIR__ . '/dbit.php';
 
 $config = [
     'id' =>  env('ID'),
@@ -29,6 +31,9 @@ $config = [
         ],
         'config' => [
             'class' => 'app\modules\config\Module',
+        ],
+        'hr' => [
+            'class' => 'app\modules\hr\Module',
         ],
     ],
     'components' => [
@@ -99,6 +104,8 @@ $config = [
             ],
         ],
         'db' => $db,
+        'dbit' => $dbit,
+        'dbhr' => $dbhr,
         /*
         'urlManager' => [
             'enablePrettyUrl' => true,

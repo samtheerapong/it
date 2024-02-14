@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Feb 10, 2024 at 09:48 AM
+-- Generation Time: Feb 14, 2024 at 07:29 AM
 -- Server version: 5.7.39
 -- PHP Version: 7.4.9
 
@@ -72,40 +72,6 @@ CREATE TABLE `cost_type` (
   `color` varchar(45) DEFAULT NULL,
   `cost_statuscol` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `department`
---
-
-CREATE TABLE `department` (
-  `id` int(11) NOT NULL,
-  `code` varchar(255) DEFAULT NULL COMMENT 'รหัส',
-  `name` varchar(255) DEFAULT NULL COMMENT 'ชื่อแผนก',
-  `detail` text COMMENT 'รายละเอียด',
-  `department_head` int(11) DEFAULT NULL COMMENT 'หัวหน้าแผนก',
-  `color` varchar(255) DEFAULT NULL COMMENT 'สี',
-  `active` int(11) DEFAULT '1' COMMENT 'สถานะ'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `department`
---
-
-INSERT INTO `department` (`id`, `code`, `name`, `detail`, `department_head`, `color`, `active`) VALUES
-(1, 'GR', 'บริหาร', NULL, 11, '#379237', 1),
-(2, 'WH', 'แผนกคลังสินค้า', NULL, 22, '#425F57', 1),
-(3, 'QC\n', 'แผนกควบคุมคุณภาพ', NULL, 20, '#379237', 1),
-(4, 'PC\n', 'แผนกจัดซื้อ', NULL, 29, '#C21010', 1),
-(5, 'HR\n', 'แผนกบุคคล', NULL, 27, '#FF8787', 1),
-(6, 'AC', 'แผนกบัญชี', NULL, 24, '#872341', 1),
-(7, 'GM', 'ผู้จัดการทั่วไป', NULL, 15, '#ED5AB3', 1),
-(8, 'PD', 'ฝ่ายผลิต', NULL, 4, '#EC8F5E', 1),
-(9, 'RD', 'แผนกวิจัยและพัฒนา', NULL, 4, '#F3B664', 1),
-(10, 'EN', 'แผนกวิศวกรรม', NULL, 26, '#2E97A7', 1),
-(11, 'IT', 'แผนกไอที', NULL, 15, '#B0578D', 1),
-(12, 'SL', 'ฝ่ายขาย', NULL, 12, '#186F65', 1);
 
 -- --------------------------------------------------------
 
@@ -269,12 +235,6 @@ ALTER TABLE `cost_type`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `department`
---
-ALTER TABLE `department`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `hardware`
 --
 ALTER TABLE `hardware`
@@ -333,12 +293,6 @@ ALTER TABLE `cost_status`
 --
 ALTER TABLE `cost_type`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `department`
---
-ALTER TABLE `department`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `hardware`

@@ -114,10 +114,10 @@ class Ncr extends \yii\db\ActiveRecord
         return $this->hasOne(NcrProcess::class, ['id' => 'process']);
     }
 
-    public function getNcrAcceptS()
-    {
-        return $this->hasMany(NcrAccept::class, ['ncr_id' => 'id']);
-    }
+    // public function getNcrAcceptS()
+    // {
+    //     return $this->hasMany(NcrAccept::class, ['ncr_id' => 'id']);
+    // }
 
     public function getNcrProtections()
     {

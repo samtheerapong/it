@@ -219,7 +219,7 @@ class NcrController extends Controller
                 try {
                     $oldFileName = $file->basename . '.' . $file->extension;
                     $newFileName = md5($file->basename . time()) . '.' . $file->extension;
-                    $file->saveAs(Env::UPLOAD_FOLDER_NCR . '/' . $model->ref . '/' . $newFileName);
+                    $file->saveAs(Ncr::UPLOAD_FOLDER . '/' . $model->ref . '/' . $newFileName);
                     $files[$newFileName] = $oldFileName;
                 } catch (Exception $e) {
                 }
@@ -266,7 +266,7 @@ class NcrController extends Controller
     private function LineNotify($model)
     {
         // Line Tokens
-        $lineapi = Env::LINE_TOKEN;
+        $lineapi = env('TOKEN_LINE_NCR');
 
         //ข้อคว่าม
         $massage =

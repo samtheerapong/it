@@ -35,8 +35,8 @@ $this->registerJsFile($publishedRes[1].'/control_sidebar.js', ['depends' => '\ha
         body {
             /* font-family: 'Sarabun', sans-serif; */
             /* font-family: 'Sriracha', cursive; */
-            font-family: 'Chakra Petch', sans-serif;
-            /* font-family: 'Kanit', sans-serif; */
+            /* font-family: 'Chakra Petch', sans-serif; */
+            font-family: 'Kanit', sans-serif;
         }
        
     </style>

@@ -289,7 +289,7 @@ class NcrReplyController extends Controller
     private function LineNotify($model)
     {
         // Line Tokens
-        $lineapi = Env::LINE_TOKEN;
+        $lineapi = env('TOKEN_LINE_NCR');
 
         //ข้อคว่าม
         $massage =

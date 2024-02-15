@@ -88,7 +88,7 @@ $config = [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => env('COOKIE_KEY'),
-            'baseUrl' => str_replace('/web', '', (new Request())->getBaseUrl()),
+            'baseUrl' => str_replace('/web', '', (new Request())->getBaseUrl()), // ข้าม /web/', ใส่ .htasset ที่นอกสุดด้วย
         ],
 
         /* --------------------- default settings --------------------- */

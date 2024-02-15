@@ -63,6 +63,32 @@ use yii\helpers\Url;
                 <!-- End Level two -->
             </ul>
         </li>
+
+        <li class="nav-item dropdown">
+            <a id="hrlv01" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle"><?= Yii::t('app', 'QC') ?></a>
+            <ul aria-labelledby="hrlv01" class="dropdown-menu border-0 shadow">
+                <li> <a href="<?= Url::toRoute('/ncr/ncr/index') ?>" class="nav-link"><?= Yii::t('app', 'NCR') ?></a></li>
+                <li> <a href="<?= Url::toRoute('/hr/car-reserve/calendar') ?>" class="nav-link"><?= Yii::t('app', 'Calendar') ?></a></li>
+
+                <li class="dropdown-divider"></li>
+
+                <!-- Level two dropdown-->
+                <li class="dropdown-submenu dropdown-hover">
+                    <a id="hrlv02" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle"><?= Yii::t('app', 'Config') ?></a>
+                    <ul aria-labelledby="hrlv02" class="dropdown-menu border-0 shadow">
+                        <li><a href="<?= Url::toRoute('/hr/car-rider/index') ?>" class="dropdown-item"><?= Yii::t('app', 'Rider') ?></a></li>
+                        <li><a href="<?= Url::toRoute('/hr/car-reserve-status/index') ?>" class="dropdown-item"><?= Yii::t('app', 'Status Reserve') ?></a></li>
+
+                        <li class="dropdown-divider"></li>
+
+                        <li><a href="<?= Url::toRoute('/hr/cars/index') ?>" class="dropdown-item"><?= Yii::t('app', 'Cars') ?></a></li>
+                        <li><a href="<?= Url::toRoute('/hr/cars-type/index') ?>" class="dropdown-item"><?= Yii::t('app', 'Type Cars') ?></a></li>
+                        <li><a href="<?= Url::toRoute('/hr/cars-status/index') ?>" class="dropdown-item"><?= Yii::t('app', 'Status Cars') ?></a></li>
+                    </ul>
+                </li>
+                <!-- End Level two -->
+            </ul>
+        </li>
     </ul>
 
 

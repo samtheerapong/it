@@ -11,7 +11,7 @@ use app\assets\AppAsset;
 \hail812\adminlte3\assets\PluginAsset::register($this)->add('sweetalert2');
 
 // $this->registerCssFile('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback');
-$this->registerCssFile('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600&family=Kanit&family=Sriracha&family=Sarabun:wght@600&display=swap');
+$this->registerCssFile('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500&family=Kanit&family=Sriracha&family=Sarabun:wght@600&display=swap');
 
 $assetDir = Yii::$app->assetManager->getPublishedUrl('@vendor/almasaeed2010/adminlte/dist');
 

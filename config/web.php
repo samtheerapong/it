@@ -1,9 +1,6 @@
 <?php
 
-$params =   require __DIR__ . '/params.php';
-$db =       require __DIR__ . '/db.php';
-$dbhr =     require __DIR__ . '/dbhr.php';
-$dbit =     require __DIR__ . '/dbit.php';
+use yii\web\Request;
 
 $config = [
     'id' =>  env('ID'),
@@ -26,8 +23,8 @@ $config = [
         'gridview' =>  [
             'class' => '\kartik\grid\Module'
         ],
-        'it' => [
-            'class' => 'app\modules\it\Module',
+        'itms' => [
+            'class' => 'app\modules\itms\Module',
         ],
         'config' => [
             'class' => 'app\modules\config\Module',
@@ -35,13 +32,24 @@ $config = [
         'hr' => [
             'class' => 'app\modules\hr\Module',
         ],
+        'ncr' => [
+            'class' => 'app\modules\ncr\Module',
+        ],
     ],
     'components' => [
-        // custom settings
+        /* --------------------- custom settings --------------------- */
+        //database
+        'db'    => require __DIR__ . '/db.php',
+        'dbit'  => require __DIR__ . '/dbit.php',
+        'dbhr'  => require __DIR__ . '/dbhr.php',
+        'dbqc'  => require __DIR__ . '/dbqc.php',
+
         'image' => [
             'class' => 'yii\image\ImageDriver',
             'driver' => 'GD',  //GD or Imagick
         ],
+
+        // themes
         'view' => [
             'theme' => [
                 'pathMap' => [
@@ -49,6 +57,8 @@ $config = [
                 ],
             ],
         ],
+
+        // แปลภาษา
         'i18n' => [
             'translations' => [
                 'app*' => [
@@ -58,6 +68,8 @@ $config = [
                 ],
             ],
         ],
+
+        // Url ex : host/web/modules/models/action
         'urlManager' => [
             'class' => 'yii\web\UrlManager',
             // Disable index.php
@@ -73,11 +85,13 @@ $config = [
             ],
         ],
 
-        // default settings
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => env('COOKIE_KEY'),
+            'baseUrl' => str_replace('/web', '', (new Request())->getBaseUrl()),
         ],
+
+        /* --------------------- default settings --------------------- */
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
@@ -103,9 +117,7 @@ $config = [
                 ],
             ],
         ],
-        'db' => $db,
-        'dbit' => $dbit,
-        'dbhr' => $dbhr,
+
         /*
         'urlManager' => [
             'enablePrettyUrl' => true,
@@ -115,7 +127,7 @@ $config = [
         ],
         */
     ],
-    'params' => $params,
+    'params' => require __DIR__ . '/params.php',
 ];
 
 if (YII_ENV_DEV) {

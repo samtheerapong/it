@@ -21,6 +21,11 @@ class Software extends \yii\db\ActiveRecord
         return 'software';
     }
 
+    public static function getDb()
+    {
+        return Yii::$app->get('dbit');
+    }
+
     /**
      * {@inheritdoc}
      */

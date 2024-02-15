@@ -4,6 +4,10 @@ namespace app\modules\it\models;
 
 use app\modules\config\models\TodoStatus;
 use Yii;
+use yii\behaviors\BlameableBehavior;
+use yii\behaviors\TimestampBehavior;
+use yii\db\BaseActiveRecord;
+use yii\web\UploadedFile;
 
 /**
  * This is the model class for table "todo".
@@ -26,9 +30,31 @@ use Yii;
  */
 class Todo extends \yii\db\ActiveRecord
 {
-    /**
-     * {@inheritdoc}
-     */
+    const UPLOAD_FOLDER = 'uploads/it/todo';
+
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => TimestampBehavior::class,
+                'attributes' => [
+                    self::EVENT_BEFORE_INSERT => ['created_at'],
+                    self::EVENT_BEFORE_UPDATE => ['updated_at'],
+                ],
+                'value' => function () {
+                    return date('Y-m-d H:i:s');
+                },
+            ],
+            [
+                'class' => BlameableBehavior::class,
+                'attributes' => [
+                    BaseActiveRecord::EVENT_BEFORE_INSERT => ['created_by', 'updated_by'],
+                    BaseActiveRecord::EVENT_BEFORE_UPDATE => ['updated_by'],
+                ],
+            ],
+        ];
+    }
+ 
     public static function tableName()
     {
         return 'todo';
@@ -39,13 +65,10 @@ class Todo extends \yii\db\ActiveRecord
         return Yii::$app->get('dbit');
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function rules()
     {
         return [
-            [['todo_code', 'title', 'department', 'request_name'], 'required'],
+            [['title', 'department', 'request_name'], 'required'],
             [['request_date', 'created_at', 'updated_at'], 'safe'],
             [['department', 'request_name', 'status', 'created_by', 'updated_by'], 'integer'],
             [['photo'], 'string'],
@@ -55,9 +78,6 @@ class Todo extends \yii\db\ActiveRecord
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function attributeLabels()
     {
         return [
@@ -76,23 +96,42 @@ class Todo extends \yii\db\ActiveRecord
         ];
     }
 
-    /**
-     * Gets query for [[Status0]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
     public function getStatus0()
     {
         return $this->hasOne(TodoStatus::class, ['id' => 'status']);
     }
 
-    /**
-     * Gets query for [[TodoActions]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
     public function getTodoActions()
     {
         return $this->hasMany(TodoAction::class, ['todo_id' => 'id']);
+    }
+
+    public function upload($model, $attribute)
+    {
+        $photo  = UploadedFile::getInstance($model, $attribute);
+        $path = $this->getUploadPath();
+        if ($this->validate() && $photo !== null) {
+
+            $fileName = md5($photo->baseName . time()) . '.' . $photo->extension;
+            if ($photo->saveAs($path . $fileName)) {
+                return $fileName;
+            }
+        }
+        return $model->isNewRecord ? false : $model->getOldAttribute($attribute);
+    }
+
+    public function getUploadPath()
+    {
+        return Yii::getAlias('@webroot') . '/' . self::UPLOAD_FOLDER . '/';
+    }
+
+    public function getUploadUrl()
+    {
+        return Yii::getAlias('@web') . '/' . self::UPLOAD_FOLDER . '/';
+    }
+
+    public function getPhotoViewer()
+    {
+        return empty($this->photo) ? Yii::getAlias('@web') . '/images/avatar.jpg' : $this->getUploadUrl() . $this->photo;
     }
 }

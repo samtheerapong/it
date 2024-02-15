@@ -25,6 +25,11 @@ class TodoStatus extends \yii\db\ActiveRecord
         return 'todo_status';
     }
 
+    public static function getDb()
+    {
+        return Yii::$app->get('dbit');
+    }
+
     /**
      * {@inheritdoc}
      */

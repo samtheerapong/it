@@ -4,6 +4,7 @@ namespace app\modules\it\controllers;
 
 use app\modules\it\models\Todo;
 use app\modules\it\models\search\TodoSearch;
+use mdm\autonumber\AutoNumber;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -93,8 +94,14 @@ class TodoController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($this->request->isPost && $model->load($this->request->post())) {
+            $model->todo_code = AutoNumber::generate('IT-' . (date('y') + 43) . date('m') . '-???'); // Auto Number EX IT-6612-0001
+            $model->status = 1; // Open
+            $model->photo = $model->upload($model, 'photo');
+
+            if ($model->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
         }
 
         return $this->render('update', [
